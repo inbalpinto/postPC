@@ -37,6 +37,28 @@ public class TipCalculatorActivity extends Activity {
 
         buttonCalc.setOnClickListener(new OnClickListener() {
  
+			@Override
+			public void onClick(View v) {
+				
+				double tip = 0;
+				
+				if (billAmount.getText().length() != 0)
+				{
+					double amount = Double.valueOf(billAmount.getText().toString());
+					tip = amount*TIP_PRECENT;
+				}
+					
+				if (checkRound.isChecked()) {
+					tipRes.setText("Tip: $" + Math.round(tip));
+		         }
+				else
+				{
+					DecimalFormat dFormat = new DecimalFormat("0.00");
+					tipRes.setText("Tip: $" + dFormat.format(tip));
+				}
+	            checkRound.setChecked(false);
+
+			}
 		});
 
     }
